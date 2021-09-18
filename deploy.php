@@ -8,7 +8,6 @@ require 'contrib/npm.php';
 set('composer_options', '--verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader');
 set('php_fpm_version', '8.0');
 set('git_tty', true);
-set('release_or_current_path', '/app');
 
 host('production')
     ->set('remote_user', 'forge')
@@ -35,7 +34,7 @@ task('rollback', [
 ]);
 
 task('refresh:environment', [
-    'artisan:horizon:terminate',
+//    'artisan:horizon:terminate',
     'php-fpm:reload'
 ]);
 
