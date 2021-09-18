@@ -1,0 +1,3 @@
+input[disabled], input[readonly], select[disabled], select[readonly]{
+    @apply bg-gray-100 opacity-75 focus:shadow-none focus:border-gray-200
+}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29" height="19" viewBox="0 0 29 19">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:none;stroke:#b45f06;stroke-linecap:round;stroke-width:3px}
+        </style>
+    </defs>
+    <g id="prefix__Компонент_8_18" data-name="Компонент 8 – 18" transform="translate(1.5 1.5)">
+        <path id="prefix__Линия_131" d="M0 0L26 0" class="prefix__cls-1" data-name="Линия 131"/>
+        <path id="prefix__Линия_132" d="M0 0L26 0" class="prefix__cls-1" data-name="Линия 132" transform="translate(0 8)"/>
+        <path id="prefix__Линия_133" d="M0 0L26 0" class="prefix__cls-1" data-name="Линия 133" transform="translate(0 16)"/>
+    </g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+    <defs>
+        <clipPath id="fvvpa">
+            <path fill="#fff" d="M.646 1.354l.708-.708 20 20-.708.708z"></path>
+        </clipPath>
+        <clipPath  id="fvvpb">
+            <path  fill="#fff" d="M.646 20.646l.708.708 20-20-.708-.708z"></path>
+        </clipPath>
+    </defs>
+    <g >
+        <g >
+            <path  fill="#558b2f" d="M.646 1.354l.708-.708 20 20-.708.708z"></path>
+            <path  fill="none" stroke="#b45f06" stroke-miterlimit="20" stroke-width="4"
+                  d="M.646 1.354v0l.708-.708v0l20 20v0l-.708.708v0z"
+                  clip-path="url(&quot;#fvvpa&quot;)"></path>
+        </g>
+        <g >
+            <path  fill="#558b2f" d="M.646 20.646l.708.708 20-20-.708-.708z"></path>
+            <path  fill="none" stroke="#b45f06" stroke-miterlimit="20" stroke-width="4"
+                  d="M.646 20.646v0l.708.708v0l20-20v0l-.708-.708v0z"
+                  clip-path="url(&quot;#fvvpb&quot;)"></path>
+        </g>
+    </g>
+</svg>

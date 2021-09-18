@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="prefix__Компонент_7_18" width="34" height="34" data-name="Компонент 7 – 18" viewBox="0 0 34 34">
+    <defs>
+        <style>
+            .prefix__cls-2{fill:#b45f06}
+        </style>
+    </defs>
+    <g id="prefix__Эллипс_10" fill="#fff" stroke="#b45f06" stroke-width="2px" data-name="Эллипс 10">
+        <circle cx="17" cy="17" r="17" stroke="none"/>
+        <circle cx="17" cy="17" r="16" fill="none"/>
+    </g>
+    <g id="prefix__iconfinder_users-70px_510857" transform="translate(10.099 10.243)" >
+        <path id="prefix__Контур_131" d="M37.508 42.271a9.328 9.328 0 0 0-3.777-1.726 4.783 4.783 0 0 1-4.924-.115 10.458 10.458 0 0 0-4.424 1.9.982.982 0 0 0-.376.732v2.783a.913.913 0 0 0 .865.994h12.12a.9.9 0 0 0 .865-.895v-2.906a.988.988 0 0 0-.349-.767zm-1.381 2.677H25.74v-1.334a8.889 8.889 0 0 1 2.821-1.207 6.426 6.426 0 0 0 2.807.653 6.328 6.328 0 0 0 2.54-.53 7.788 7.788 0 0 1 2.222 1z"
+              class="prefix__cls-2" data-name="Контур 131" transform="translate(-24.007 -33.415)"
+        />
+        <path  id="prefix__Контур_132" d="M33 26.776A3.776 3.776 0 1 0 36.776 23 3.777 3.777 0 0 0 33 26.776zm3.776-1.888a1.888 1.888 0 1 1-1.888 1.888 1.89 1.89 0 0 1 1.888-1.888z"
+              class="prefix__cls-2" data-name="Контур 132" transform="translate(-29.458 -23)"
+        />
+    </g>
+</svg>

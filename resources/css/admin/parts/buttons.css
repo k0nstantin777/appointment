@@ -1,0 +1,90 @@
+.btn{
+    @apply flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors
+           duration-150 border border-transparent rounded-lg;
+
+    &:focus{
+        @apply outline-none;
+    }
+
+    &.dropdown{
+        @apply pr-8 relative;
+        &::after{
+            content: "";
+            border-top: .4em solid;
+            border-right: .4em solid transparent;
+            border-bottom: 0;
+            border-left: .4em solid transparent;
+            right: 0.8em;
+            @apply text-white absolute transform
+        }
+        &.dropdown-open{
+            &::after{
+                @apply rotate-180
+            }
+        }
+    }
+
+    &:disabled{
+        @apply opacity-25;
+    }
+}
+
+.btn.btn-sm{
+    @apply px-2 py-1 text-xs;
+}
+
+.btn.btn-purple{
+    @apply bg-purple-600;
+
+    &:active {
+        @apply bg-purple-600;
+    }
+    &:hover{
+        @apply bg-purple-700;
+    }
+    &:focus{
+        @apply  shadow-outline-purple;
+    }
+}
+
+.btn.btn-green{
+    @apply bg-green-600;
+
+    &:active {
+        @apply bg-green-600;
+    }
+    &:hover{
+        @apply bg-green-700;
+    }
+    &:focus{
+        @apply shadow-outline-green;
+    }
+}
+
+.btn.btn-blue{
+    @apply bg-blue-600;
+
+    &:active {
+        @apply bg-blue-600;
+    }
+    &:hover{
+        @apply bg-blue-700;
+    }
+    &:focus{
+        @apply shadow-outline-blue;
+    }
+}
+
+.btn.btn-red{
+    @apply bg-red-600;
+
+    &:active {
+        @apply bg-red-600;
+    }
+    &:hover{
+        @apply bg-red-600;
+    }
+    &:focus{
+        @apply shadow-outline-blue;
+    }
+}

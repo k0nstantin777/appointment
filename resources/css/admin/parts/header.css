@@ -1,0 +1,10 @@
+.header-notifications{
+    .header-notifications-dropdown{
+        ul{
+            width: 350px;
+            max-height: 300px;
+            overflow-y: auto;
+            @apply max-sm:w-56;
+        }
+    }
+}

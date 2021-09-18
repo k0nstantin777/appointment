@@ -1,0 +1,7 @@
+.sidebar{
+    @apply w-64;
+}
+
+.main{
+    width: calc(100% - 16rem);
+}

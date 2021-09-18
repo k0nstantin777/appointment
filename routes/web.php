@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.coming-soon')
+        ->with([
+            'openDay' =>  \Illuminate\Support\Carbon::parse('2021-12-01'),
+            'now' => now(),
+        ]);
 });
