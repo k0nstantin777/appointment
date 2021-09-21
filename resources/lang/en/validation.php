@@ -153,6 +153,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'position_id'           => 'Position',
+        'service_ids'           => 'Attached Services'
+    ],
 
 ];

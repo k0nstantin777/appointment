@@ -5,6 +5,6 @@
         <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300 text-lg">
             {{ $title }}
         </h4>
-        {{ $body ?? ''}}
+        {{ $slot ?? ''}}
     </div>
 </div>

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Employee;
+use App\Models\Position;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EmployeeFactory extends Factory
@@ -24,6 +25,7 @@ class EmployeeFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->email,
+            'position_id' => Position::inRandomOrder()->first()->id,
         ];
     }
 }
