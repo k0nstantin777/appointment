@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('admin.content')
-    <div class="container px-6 mx-auto grid">
+    <div class="container px-6 mx-auto grid mb-6">
         <x-admin.page.head :text="$title"/>
         <div class="flex mb-3">
             <a class="btn btn-purple" href="{{ route(ADMIN_SECTIONS_CREATE_ROUTE) }}">

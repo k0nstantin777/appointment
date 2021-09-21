@@ -204,5 +204,14 @@ return [
         'size'                  => 'Размер',
         'position_id'           => 'Должность',
         'service_ids'           => 'Оказываемые услуги',
+        'section_ids'           => 'Привязанные разделы',
+        'parent_category_id'    => 'Родительская категория',
+        'duration'              => 'Длительность',
+        'price'                 => 'Стоимость',
+        'categories_ids'        => 'Привязанные категории',
+        'employee_id'           => 'Сотрудник',
+        'client_id'             => 'Клиент',
+        'service_id'            => 'Услуга',
+
     ],
 ];

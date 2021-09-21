@@ -69,4 +69,15 @@ class Service extends Model
         return $this->belongsToMany(Category::class)
             ->withTimestamps();
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACCESSORS
+    |--------------------------------------------------------------------------
+    */
+
+    public function getDurationAttribute(string $value) : string
+    {
+        return Carbon::parse($value)->format('H:i');
+    }
 }

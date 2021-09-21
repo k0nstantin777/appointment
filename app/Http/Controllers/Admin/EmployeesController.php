@@ -18,7 +18,7 @@ class EmployeesController extends Controller
     {
         return view('admin.pages.employees.index', [
             'collection' => Employee::latest()
-                ->with('position')
+                ->with(['position','services'])
                 ->paginate(ADMIN_DATATABLES_DEFAULT_PER_PAGE),
             'title' => 'Сотрудники'
         ]);

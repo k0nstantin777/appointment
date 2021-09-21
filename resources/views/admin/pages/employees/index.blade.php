@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('admin.content')
-    <div class="container px-6 mx-auto grid">
+    <div class="container px-6 mx-auto grid mb-6">
         <x-admin.page.head :text="$title"/>
         <div class="flex mb-3">
             <a class="btn btn-purple" href="{{ route(ADMIN_EMPLOYEES_CRETE_ROUTE) }}">
@@ -17,6 +17,7 @@
                     <th class="px-4 py-3">Имя</th>
                     <th class="px-4 py-3">Должность</th>
                     <th class="px-4 py-3">Email</th>
+                    <th class="px-4 py-3">Оказываемые услуги</th>
                     <th class="px-4 py-3 w-40">Действия</th>
                 </tr>
             </x-slot>
@@ -35,6 +36,9 @@
                         </td>
                         <td class="px-4 py-3 text-sm">
                             {{ $item->email }}
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            {{ implode(',', $item->services->pluck('name')->toArray()) }}
                         </td>
                         <td class="px-4 py-3">
                             <div class="flex items-center space-x-4 text-sm">

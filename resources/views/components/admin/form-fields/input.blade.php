@@ -8,6 +8,7 @@
                 border-red-600
             @endif
         "
+        type="{{ $type }}"
         placeholder="{{ $placeholder ?: $label }}"
         name="{{ $name }}"
         value="{{ old($name) ?? $value }}"

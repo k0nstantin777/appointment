@@ -155,7 +155,15 @@ return [
 
     'attributes' => [
         'position_id'           => 'Position',
-        'service_ids'           => 'Attached Services'
+        'service_ids'           => 'Attached Services',
+        'section_ids'           => 'Attached Sections',
+        'parent_category_id'    => 'Parent Category',
+        'duration'              => 'Duration',
+        'price'                 => 'Стоимость',
+        'categories_ids'        => 'Attached Categories',
+        'employee_id'           => 'Employee',
+        'client_id'             => 'Client',
+        'service_id'            => 'Service',
     ],
 
 ];
