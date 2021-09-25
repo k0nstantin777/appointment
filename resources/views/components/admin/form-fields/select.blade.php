@@ -15,7 +15,7 @@
         @endif
         @foreach($options as $value => $label)
             <option value="{{ $value }}"
-                @if($selected === $value)
+                @if($selected == $value)
                     selected
                 @endif
             >{{ $label }}</option>

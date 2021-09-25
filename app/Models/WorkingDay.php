@@ -39,6 +39,8 @@ class WorkingDay extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    protected $dates = ['date'];
+
    /*
    |--------------------------------------------------------------------------
    | RELATIONS
@@ -49,4 +51,20 @@ class WorkingDay extends Model
    {
        return $this->belongsTo(Employee::class);
    }
+
+    /*
+     |--------------------------------------------------------------------------
+     | ACCESSORS
+     |--------------------------------------------------------------------------
+     */
+
+    public function getStartAtAttribute(string $value) : string
+    {
+        return Carbon::parse($value)->format('H:i');
+    }
+
+    public function getEndAtAttribute(string $value) : string
+    {
+        return Carbon::parse($value)->format('H:i');
+    }
 }

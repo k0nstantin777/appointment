@@ -3,8 +3,10 @@
 namespace App\Services\Entities;
 
 use App\DataTransferObjects\StoreEmployeeDto;
+use App\DataTransferObjects\UpdateEmployeeWorkingDaysDto;
 use App\Models\Employee;;
 use App\Services\BaseService;
+use Carbon\Carbon;
 
 class EmployeeService extends BaseService
 {
@@ -44,5 +46,32 @@ class EmployeeService extends BaseService
     public function delete(int $id) : bool
     {
         return $this->getById($id)->delete();
+    }
+
+    public function updateWorkingDays(int $id, UpdateEmployeeWorkingDaysDto $dto) : Employee
+    {
+        $employee = $this->getById($id);
+        $startDays = $dto->getStartDays();
+        $endDays = $dto->getEndDays();
+
+        foreach ($startDays as $index => $startTime) {
+            $endTime = $endDays[$index] ?? '';
+            if (!$startTime || !$endTime) {
+                continue;
+            }
+            $day = Carbon::create($dto->getYear(), $dto->getMonth(), $index + 1);
+            $employee->workingDays()
+                ->whereMonth('date', $day->month)
+                ->whereYear('date', $day->year)
+                ->whereDay('date', $day->day)
+                ->updateOrCreate([
+                    'date' => $day
+                ], [
+                    'start_at' => $startTime,
+                    'end_at' => $endTime,
+                ]);
+        }
+
+        return $employee->fresh();
     }
 }

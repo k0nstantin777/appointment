@@ -3,7 +3,7 @@
         class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
         href="#"
     >
-        {{ config('app.name') }}
+        {{ $generalSettings->company_name  }}
     </a>
     <ul class="mt-6">
         <x-admin.sidebar.item :name="'Главная панель'" :route="route(ADMIN_DASHBOARD_ROUTE)"
@@ -55,20 +55,25 @@
                 <x-heroicon-o-users class="w-5 h-5"/>
             </x-slot>
         </x-admin.sidebar.item>
-        <x-admin.sidebar.item :name="'График'" :route="route(ADMIN_WORKING_DAYS_INDEX_ROUTE)"
-                              :is-active="request()->routeIs('admin.working_days.*')"
-        >
-            <x-slot name="icon">
-                <x-heroicon-o-calendar
-                    class="w-5 h-5"/>
-            </x-slot>
-        </x-admin.sidebar.item>
         <x-admin.sidebar.item :name="'Визиты'" :route="route(ADMIN_VISITS_INDEX_ROUTE)"
                               :is-active="request()->routeIs('admin.visits.*')"
         >
             <x-slot name="icon">
-                <x-heroicon-o-clipboard-check
-                    class="w-5 h-5"/>
+                <x-heroicon-o-clipboard-check class="w-5 h-5"/>
+            </x-slot>
+        </x-admin.sidebar.item>
+        <x-admin.sidebar.item :name="'Настройки'" :route="route(ADMIN_SETTINGS_GENERAL_EDIT_ROUTE)"
+                              :is-active="request()->routeIs(ADMIN_SETTINGS_GENERAL_EDIT_ROUTE)"
+        >
+            <x-slot name="icon">
+                <x-heroicon-o-cog class="w-5 h-5"/>
+            </x-slot>
+        </x-admin.sidebar.item>
+        <x-admin.sidebar.item :name="'График работы'" :route="route(ADMIN_SETTINGS_WORKING_DAYS_EDIT_ROUTE)"
+                              :is-active="request()->routeIs(ADMIN_SETTINGS_WORKING_DAYS_EDIT_ROUTE)"
+        >
+            <x-slot name="icon">
+                <x-heroicon-o-calendar class="w-5 h-5"/>
             </x-slot>
         </x-admin.sidebar.item>
     </ul>

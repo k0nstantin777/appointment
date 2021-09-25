@@ -9,6 +9,8 @@ const ADMIN_EMPLOYEES_EDIT_ROUTE = 'admin.employees.edit';
 const ADMIN_EMPLOYEES_STORE_ROUTE = 'admin.employees.store';
 const ADMIN_EMPLOYEES_UPDATE_ROUTE = 'admin.employees.update';
 const ADMIN_EMPLOYEES_DELETE_ROUTE = 'admin.employees.destroy';
+const ADMIN_EMPLOYEES_WORKING_DAYS_EDIT_ROUTE = 'admin.employees.working-days.edit';
+const ADMIN_EMPLOYEES_WORKING_DAYS_UPDATE_ROUTE = 'admin.employees.working-days.update';
 
 const ADMIN_CLIENTS_INDEX_ROUTE = 'admin.clients.index';
 const ADMIN_CLIENTS_CREATE_ROUTE = 'admin.clients.create';
@@ -52,7 +54,10 @@ const ADMIN_VISITS_STORE_ROUTE = 'admin.visits.store';
 const ADMIN_VISITS_UPDATE_ROUTE = 'admin.visits.update';
 const ADMIN_VISITS_DELETE_ROUTE = 'admin.visits.destroy';
 
-const ADMIN_WORKING_DAYS_INDEX_ROUTE = 'admin.working-days.index';
+const ADMIN_SETTINGS_GENERAL_EDIT_ROUTE = 'admin.settings.general.edit';
+const ADMIN_SETTINGS_GENERAL_UPDATE_ROUTE = 'admin.settings.general.update';
+const ADMIN_SETTINGS_WORKING_DAYS_EDIT_ROUTE = 'admin.settings.working-days.edit';
+const ADMIN_SETTINGS_WORKING_DAYS_UPDATE_ROUTE = 'admin.settings.working-days.update';
 
 /******** OTHER ADMIN CONSTANTS **********/
 const ADMIN_DATATABLES_DEFAULT_PER_PAGE = 10;

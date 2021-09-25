@@ -69,6 +69,10 @@ class AdminBreadcrumbs
                             ADMIN_EMPLOYEES_CRETE_ROUTE => [
                                 'name' => 'Создание сотрудника',
                             ],
+                            ADMIN_EMPLOYEES_WORKING_DAYS_EDIT_ROUTE => [
+                                'name' => 'Редактирование графика сотрудника',
+                                'uri' => '',
+                            ],
                         ],
                     ],
                     ADMIN_VISITS_INDEX_ROUTE => [
@@ -95,6 +99,12 @@ class AdminBreadcrumbs
                             ],
                         ],
                     ],
+                    ADMIN_SETTINGS_GENERAL_EDIT_ROUTE => [
+                        'name' => 'Настройки приложения',
+                    ],
+                    ADMIN_SETTINGS_WORKING_DAYS_EDIT_ROUTE => [
+                        'name' => 'График работы',
+                    ]
                 ]
             ]
         ];
