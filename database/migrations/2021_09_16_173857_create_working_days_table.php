@@ -15,7 +15,7 @@ class CreateWorkingDaysTable extends Migration
     {
         Schema::create('working_days', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->date('calendar_date');
             $table->time('start_at');
             $table->time('end_at');
             $table->unsignedBigInteger('employee_id');
@@ -24,7 +24,7 @@ class CreateWorkingDaysTable extends Migration
                 ->references('id')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->unique(['date', 'employee_id']);
+            $table->unique(['calendar_date', 'employee_id']);
             $table->timestamps();
         });
     }

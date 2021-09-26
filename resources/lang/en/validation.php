@@ -164,6 +164,8 @@ return [
         'employee_id'           => 'Employee',
         'client_id'             => 'Client',
         'service_id'            => 'Service',
+        'visit_start_at'        => 'Start Visit',
+        'visit_end_at'          => 'End Visit',
     ],
 
 ];

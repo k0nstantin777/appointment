@@ -11,10 +11,25 @@
                 @endisset
 
                 <x-admin.form-fields.input
-                    name="date"
-                    label="Дата"
-                    value="{{ isset($model) ? $model->date->toDateTimeLocalString() : ''}}"
-                    type="datetime-local"
+                    name="visit_date"
+                    label="Дата визита"
+                    value="{{ isset($model) ? $model->visit_date->toDateString() : ''}}"
+                    type="date"
+                ></x-admin.form-fields.input>
+
+                <x-admin.form-fields.input
+                    name="visit_start_at"
+                    label="Начало визита"
+                    value="{{ isset($model) ? $model->start_at->format('H:i') : ''}}"
+                    type="time"
+                ></x-admin.form-fields.input>
+
+
+                <x-admin.form-fields.input
+                    name="visit_end_at"
+                    label="Окончание визита"
+                    value="{{ isset($model) ? $model->end_at->format('H:i') : ''}}"
+                    type="time"
                 ></x-admin.form-fields.input>
 
                 <x-admin.form-fields.select

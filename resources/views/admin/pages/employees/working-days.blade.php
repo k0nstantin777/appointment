@@ -62,7 +62,7 @@
                                 @for($i = 1; $i <= $requestDate->daysInMonth; $i++)
                                     @php
                                         $weekDay = $requestDate->copy()->setDay($i);
-                                        $workingDay = $workingDays->first(fn($workingDay) => $workingDay->date->toDateString() === $weekDay->toDateString());
+                                        $workingDay = $workingDays->first(fn($workingDay) => $workingDay->calendar_date->toDateString() === $weekDay->toDateString());
                                     @endphp
                                     <td class="px-3 py-5">
                                         <input type="time" name="start_days[]"
@@ -77,7 +77,7 @@
                                 @for($i = 1; $i <= $requestDate->daysInMonth; $i++)
                                     @php
                                         $weekDay = $requestDate->copy()->setDay($i);
-                                        $workingDay = $workingDays->first(fn($workingDay) => $workingDay->date->toDateString() === $weekDay->toDateString());
+                                        $workingDay = $workingDays->first(fn($workingDay) => $workingDay->calendar_date->toDateString() === $weekDay->toDateString());
                                     @endphp
                                     <td class="px-3 py-5">
                                         <input type="time" value="{{ $workingDay ? $workingDay->end_at : '' }}"

@@ -13,6 +13,13 @@
                 <x-heroicon-o-home class="w-5 h-5"/>
             </x-slot>
         </x-admin.sidebar.item>
+        <x-admin.sidebar.item :name="'Расписание'" :route="route(ADMIN_SCHEDULE_INDEX_ROUTE)"
+                              :is-active="request()->routeIs(ADMIN_SCHEDULE_INDEX_ROUTE)"
+        >
+            <x-slot name="icon">
+                <x-heroicon-o-presentation-chart-line class="w-5 h-5"/>
+            </x-slot>
+        </x-admin.sidebar.item>
         <x-admin.sidebar.item :name="'Должности'" :route="route(ADMIN_POSITIONS_INDEX_ROUTE)"
                               :is-active="request()->routeIs('admin.positions.*')"
         >

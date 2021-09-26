@@ -23,7 +23,7 @@ class WorkingDayFactory extends Factory
     public function definition()
     {
         return [
-            'date' => now()->addDays($this->faker->numberBetween(0, 10)),
+            'calendar_date' => now()->addDays($this->faker->numberBetween(0, 10)),
             'start_at' => sprintf('%s:00', $this->faker->numberBetween(8,11)),
             'end_at' => sprintf('%s:00', $this->faker->numberBetween(15,20)),
             'employee_id' => Employee::inRandomOrder()->first()->id,

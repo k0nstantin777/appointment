@@ -212,6 +212,7 @@ return [
         'employee_id'           => 'Сотрудник',
         'client_id'             => 'Клиент',
         'service_id'            => 'Услуга',
-
+        'visit_start_at'        => 'Начало визита',
+        'visit_end_at'          => 'Окончание визита',
     ],
 ];

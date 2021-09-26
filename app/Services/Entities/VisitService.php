@@ -15,28 +15,29 @@ class VisitService extends BaseService
 
     public function store(StoreVisitDto $dto) : Visit
     {
-        return Visit::create([
-            'date' => $dto->getDate(),
-            'employee_id' => $dto->getEmployeeId(),
-            'client_id' => $dto->getClientId(),
-            'service_id' => $dto->getServiceId(),
-            'price' => $dto->getPrice(),
-        ]);
+        return Visit::create($this->fillData($dto));
     }
 
     public function update(int $id, StoreVisitDto $dto) : Visit
     {
-        return tap($this->getById($id))->update([
-            'date' => $dto->getDate(),
-            'employee_id' => $dto->getEmployeeId(),
-            'client_id' => $dto->getClientId(),
-            'service_id' => $dto->getServiceId(),
-            'price' => $dto->getPrice(),
-        ]);
+        return tap($this->getById($id))->update($this->fillData($dto));
     }
 
     public function delete(int $id) : bool
     {
         return $this->getById($id)->delete();
+    }
+
+    private function fillData(StoreVisitDto $dto) : array
+    {
+        return [
+            'visit_date' => $dto->getVisitDate(),
+            'start_at' => $dto->getStartAt(),
+            'end_at' => $dto->getEndAt(),
+            'employee_id' => $dto->getEmployeeId(),
+            'client_id' => $dto->getClientId(),
+            'service_id' => $dto->getServiceId(),
+            'price' => $dto->getPrice(),
+        ];
     }
 }

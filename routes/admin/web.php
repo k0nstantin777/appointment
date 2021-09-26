@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmployeesController;
 use App\Http\Controllers\Admin\EmployeeWorkingDaysController;
 use App\Http\Controllers\Admin\PositionsController;
+use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\SectionsController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\VisitsController;
@@ -23,6 +24,9 @@ Route::middleware(['auth'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard');
+
+        Route::get('/schedule', [ScheduleController::class, 'index'])
+            ->name('schedule.index');
 
         Route::resource('/clients', ClientsController::class);
         Route::resource('/sections', SectionsController::class);

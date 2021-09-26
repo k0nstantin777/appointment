@@ -5,7 +5,9 @@ namespace App\DataTransferObjects;
 class StoreVisitDto
 {
     public function __construct(
-        private string $date,
+        private string $visitDate,
+        private string $startAt,
+        private string $endAt,
         private int $employeeId,
         private int $serviceId,
         private int $clientId,
@@ -17,9 +19,25 @@ class StoreVisitDto
     /**
      * @return string
      */
-    public function getDate(): string
+    public function getVisitDate(): string
     {
-        return $this->date;
+        return $this->visitDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStartAt(): string
+    {
+        return $this->startAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndAt(): string
+    {
+        return $this->endAt;
     }
 
     /**

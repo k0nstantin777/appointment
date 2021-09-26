@@ -30,6 +30,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Client whereName($value)
  * @method static Builder|Client whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $phone
+ * @method static Builder|Client wherePhone($value)
  */
 class Client extends Model
 {

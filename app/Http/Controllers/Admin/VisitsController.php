@@ -17,7 +17,7 @@ class VisitsController extends Controller
     public function index()
     {
         return view('admin.pages.visits.index', [
-            'collection' => Visit::orderBy('date', 'desc')
+            'collection' => Visit::orderBy('visit_date', 'desc')
                 ->with(['service', 'client', 'employee'])
                 ->paginate(ADMIN_DATATABLES_DEFAULT_PER_PAGE),
             'title' => 'Визиты'
@@ -39,7 +39,7 @@ class VisitsController extends Controller
     {
         $service->store($request->getDto());
 
-        return redirect()->route(ADMIN_VISITS_INDEX_ROUTE);
+        return redirect()->back();
     }
 
     public function edit(int $id, VisitService $service) : View
@@ -60,13 +60,13 @@ class VisitsController extends Controller
     {
         $service->update($id, $request->getDto());
 
-        return redirect()->route(ADMIN_VISITS_INDEX_ROUTE);
+        return redirect()->back();
     }
 
     public function destroy(int $id, VisitService $service): RedirectResponse
     {
         $service->delete($id);
 
-        return redirect()->route(ADMIN_VISITS_INDEX_ROUTE);
+        return redirect()->back();
     }
 }

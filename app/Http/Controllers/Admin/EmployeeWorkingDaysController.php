@@ -23,8 +23,8 @@ class EmployeeWorkingDaysController extends Controller
         $requestDate->setYear($year);
         $requestDate->setMonth($month);
 
-        $workingDays = WorkingDay::whereMonth('date', $month)
-            ->whereYear('date', $year)
+        $workingDays = WorkingDay::whereMonth('calendar_date', $month)
+            ->whereYear('calendar_date', $year)
             ->where('employee_id', $id)
             ->get();
 

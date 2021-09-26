@@ -15,7 +15,7 @@ class VisitsTableSeeder extends Seeder
     public function run()
     {
         Visit::factory()
-            ->count(50)
+            ->count(150)
             ->create();
     }
 }

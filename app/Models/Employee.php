@@ -38,6 +38,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Employee whereUpdatedAt($value)
  * @mixin Eloquent
  * @property-read \App\Models\Position $position
+ * @property int|null $position_id
+ * @method static Builder|Employee wherePositionId($value)
  */
 class Employee extends Model
 {

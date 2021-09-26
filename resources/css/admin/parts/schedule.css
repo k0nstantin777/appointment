@@ -1,0 +1,114 @@
+/*************************
+ * GRID SCHEDULE LAYOUT
+ *************************/
+
+.time-slot {
+    grid-column: times;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+    position: sticky;
+    left: 0;
+    z-index: 2401;
+}
+
+.track-slot {
+    display: none; /* hidden on small screens and browsers without grid support */
+    min-width: 120px;
+    text-align: center;
+    border-left: 1px solid #ccc;
+}
+
+@supports( display:grid ) {
+    @media screen and (min-width:700px) {
+        .track-slot {
+            display: block;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 2401;
+            background-color: #fff;
+        }
+    }
+}
+
+@supports( display:grid ) {
+    @media screen and (min-width: 700px) {
+        .session {
+            margin: 0;
+        }
+    }
+}
+
+/*************************
+ * VISUAL STYLES
+ * Design-y stuff ot particularly important to the demo
+ *************************/
+
+.session {
+    font-size: 14px;
+    background-color: #9061f9;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+}
+
+.session-title,
+.session-time,
+.session-track,
+.session-presenter {
+    display: block;
+    padding: 0 5px;
+}
+
+.session-title,
+.time-slot {
+    margin: 0;
+    font-size: 1em;
+}
+
+.session-title a {
+    color: #fff;
+    text-decoration-style: dotted;
+
+    &:hover {
+        font-style: italic;
+    }
+
+    &:focus {
+        outline: 2px dotted rgba(255,255,255,.8);
+    }
+}
+
+.track-slot,
+.time-slot {
+    font-weight: bold;
+    font-size:.75em;
+}
+
+.track-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ccc;
+    color: #000;
+    box-shadow: none;
+}
+
+.text {
+    max-width: 750px;
+    font-size: 18px;
+    margin: 0 auto 50px;
+}
+
+.meta {
+    color: #555;
+    font-style: italic;
+}
+
+.meta a {
+    color: #555;
+}
+
+hr {
+    margin: 40px 0;
+}

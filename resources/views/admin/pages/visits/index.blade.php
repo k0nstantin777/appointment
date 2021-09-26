@@ -14,7 +14,7 @@
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                 >
-                    <th class="px-4 py-3">Дата</th>
+                    <th class="px-4 py-3">Дата визита</th>
                     <th class="px-4 py-3">Клиент</th>
                     <th class="px-4 py-3">Услуга</th>
                     <th class="px-4 py-3">Сотрудник</th>
@@ -27,7 +27,10 @@
                         <td class="px-4 py-3">
                             <div class="flex items-center text-sm">
                                 <div>
-                                    <p class="font-semibold">{{ $item->date->toDateTimeString() }}</p>
+                                    <p class="font-semibold">
+                                        {{ $item->visit_date->format('d/m/Y') }},
+                                        {{ $item->start_at->format('H:i') }} - {{ $item->end_at->format('H:i') }}
+                                    </p>
                                 </div>
                             </div>
                         </td>

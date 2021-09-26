@@ -104,6 +104,9 @@ class AdminBreadcrumbs
                     ],
                     ADMIN_SETTINGS_WORKING_DAYS_EDIT_ROUTE => [
                         'name' => 'График работы',
+                    ],
+                    ADMIN_SCHEDULE_INDEX_ROUTE => [
+                        'name' => 'Расписание',
                     ]
                 ]
             ]

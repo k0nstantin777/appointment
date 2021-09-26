@@ -13,7 +13,7 @@ use Illuminate\Support\Carbon;
  * App\Models\WorkingDay
  *
  * @property int $id
- * @property string $date
+ * @property string $calendar_date
  * @property string $start_at
  * @property string $end_at
  * @property int $employee_id
@@ -25,13 +25,13 @@ use Illuminate\Support\Carbon;
  * @method static Builder|WorkingDay newQuery()
  * @method static Builder|WorkingDay query()
  * @method static Builder|WorkingDay whereCreatedAt($value)
- * @method static Builder|WorkingDay whereDate($value)
  * @method static Builder|WorkingDay whereEmployeeId($value)
  * @method static Builder|WorkingDay whereEndAt($value)
  * @method static Builder|WorkingDay whereId($value)
  * @method static Builder|WorkingDay whereStartAt($value)
  * @method static Builder|WorkingDay whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static Builder|WorkingDay whereCalendarDate($value)
  */
 class WorkingDay extends Model
 {
@@ -39,7 +39,7 @@ class WorkingDay extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    protected $dates = ['date'];
+    protected $dates = ['calendar_date'];
 
    /*
    |--------------------------------------------------------------------------
@@ -53,10 +53,10 @@ class WorkingDay extends Model
    }
 
     /*
-     |--------------------------------------------------------------------------
-     | ACCESSORS
-     |--------------------------------------------------------------------------
-     */
+    |--------------------------------------------------------------------------
+    | ACCESSORS
+    |--------------------------------------------------------------------------
+    */
 
     public function getStartAtAttribute(string $value) : string
     {

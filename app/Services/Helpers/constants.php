@@ -59,6 +59,8 @@ const ADMIN_SETTINGS_GENERAL_UPDATE_ROUTE = 'admin.settings.general.update';
 const ADMIN_SETTINGS_WORKING_DAYS_EDIT_ROUTE = 'admin.settings.working-days.edit';
 const ADMIN_SETTINGS_WORKING_DAYS_UPDATE_ROUTE = 'admin.settings.working-days.update';
 
+const ADMIN_SCHEDULE_INDEX_ROUTE = 'admin.schedule.index';
+
 /******** OTHER ADMIN CONSTANTS **********/
 const ADMIN_DATATABLES_DEFAULT_PER_PAGE = 10;
 

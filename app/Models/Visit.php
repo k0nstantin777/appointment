@@ -13,7 +13,7 @@ use Illuminate\Support\Carbon;
  * App\Models\Visit
  *
  * @property int $id
- * @property string $date
+ * @property string $visit_date
  * @property int|null $employee_id
  * @property int|null $service_id
  * @property int|null $client_id
@@ -29,13 +29,17 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Visit query()
  * @method static Builder|Visit whereClientId($value)
  * @method static Builder|Visit whereCreatedAt($value)
- * @method static Builder|Visit whereDate($value)
  * @method static Builder|Visit whereEmployeeId($value)
  * @method static Builder|Visit whereId($value)
  * @method static Builder|Visit wherePrice($value)
  * @method static Builder|Visit whereServiceId($value)
  * @method static Builder|Visit whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property Carbon $start_at
+ * @property Carbon $end_at
+ * @method static Builder|Visit whereEndAt($value)
+ * @method static Builder|Visit whereStartAt($value)
+ * @method static Builder|Visit whereVisitDate($value)
  */
 class Visit extends Model
 {
@@ -43,7 +47,7 @@ class Visit extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    protected $dates = ['date'];
+    protected $dates = ['visit_date', 'start_at', 'end_at'];
 
     /*
     |--------------------------------------------------------------------------

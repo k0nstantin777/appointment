@@ -15,7 +15,9 @@ class CreateVisitsTable extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('date');
+            $table->date('visit_date');
+            $table->time('start_at');
+            $table->time('end_at');
             $table->unsignedBigInteger('employee_id')->nullable();
             $table->foreign('employee_id')
                 ->on('employees')
