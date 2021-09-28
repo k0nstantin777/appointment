@@ -10,6 +10,7 @@ use App\Models\Employee;
 use App\Models\Service;
 use App\Models\Visit;
 use App\Services\Entities\VisitService;
+use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -25,12 +26,17 @@ class VisitsController extends Controller
         ]);
     }
 
-    public function create(VisitService $service) : View
+    public function create(VisitService $service, Request $request) : View
     {
         return view('admin.pages.visits.form', array_merge([
                 'title' => 'Создание визита',
                 'action' => route(ADMIN_VISITS_STORE_ROUTE),
-                'model' => $service->makeDefault(),
+                'model' => $service->makeDefault([
+                    'client_id' => $request->get('client_id', ''),
+                    'employee_id' => $request->get('employee_id', ''),
+                    'service_id' => $request->get('service_id', ''),
+                    'visit_date' => $request->get('visit_date', '')
+                ]),
             ], $this->getFormData()
         ));
     }

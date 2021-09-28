@@ -49,8 +49,16 @@
                                 <a href="{{ route(ADMIN_CLIENTS_EDIT_ROUTE, [$item->id]) }}"
                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                     aria-label="Edit"
+                                    title="Редактировать"
                                 >
                                     <x-heroicon-o-pencil class="w-5 h-5"/>
+                                </a>
+                                <a href="{{ route(ADMIN_VISITS_CREATE_ROUTE, ['client_id' => $item->id]) }}"
+                                   class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                   aria-label="Edit"
+                                   title="Создать визит"
+                                >
+                                    <x-heroicon-o-plus-circle class="w-5 h-5"/>
                                 </a>
                                 <form action="{{ route(ADMIN_CLIENTS_DELETE_ROUTE,  [$item->id]) }}" method="post">
                                     @csrf
@@ -58,6 +66,7 @@
                                     <button type="submit"
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                         aria-label="Delete"
+                                        title="Удалить"
                                     >
                                         <x-heroicon-o-trash class="w-5 h-5"/>
                                     </button>

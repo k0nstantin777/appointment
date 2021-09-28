@@ -34,12 +34,12 @@ class VisitService extends BaseService
         return $this->getById($id)->delete();
     }
 
-    public function makeDefault() : Visit
+    public function makeDefault(array $attributes = []) : Visit
     {
         $workingDaySettings = $this->workingDaysSettingsService->getTodayWorkingTimes();
         $startTime = $workingDaySettings['start_time'];
 
-        return Visit::make([
+        return Visit::make(array_merge([
             'visit_date' => now(),
             'start_at' => $startTime->format('H:i'),
             'end_at' => $startTime->copy()->addMinutes(90)->format('H:i'),
@@ -48,7 +48,7 @@ class VisitService extends BaseService
             'service_id' => '',
             'price' => 0,
             'status' => VisitStatus::NEW,
-        ]);
+        ], $attributes));
     }
 
     private function fillData(StoreVisitDto $dto) : array

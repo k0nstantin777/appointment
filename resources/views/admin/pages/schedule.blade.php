@@ -3,7 +3,7 @@
 @section('admin.content')
     <div class="container px-6 mx-auto grid">
         <x-admin.page.head :text="$title"/>
-        <x-admin.page.card title="Фильтр">
+        <x-admin.page.card>
             <form action="{{ route(ADMIN_SCHEDULE_INDEX_ROUTE) }}" method="get" class="flex items-center">
                 <x-admin.form-fields.input
                     name="date"
@@ -14,6 +14,9 @@
                 <button class="btn btn-purple ml-3 mt-3">
                     Открыть
                 </button>
+                <a href="{{ route(ADMIN_VISITS_CREATE_ROUTE, ['visit_date' => $today->toDateString()]) }}" class="btn btn-purple ml-3 mt-3">
+                    Создать визит
+                </a>
             </form>
         </x-admin.page.card>
         <x-admin.page.card>
