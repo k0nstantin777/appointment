@@ -32,6 +32,8 @@ class UpdateEmployeeWorkingDaysRequest extends FormRequest
             'start_days.*' => ['nullable', 'date_format:H:i'],
             'end_days' => ['required', 'array'],
             'end_days.*' => ['nullable', 'date_format:H:i'],
+            'day_offs' => ['required', 'array'],
+            'day_offs.*' => ['nullable', 'numeric'],
         ];
     }
 
@@ -42,6 +44,7 @@ class UpdateEmployeeWorkingDaysRequest extends FormRequest
             $this->get('year'),
             $this->get('start_days'),
             $this->get('end_days'),
+            $this->get('day_offs'),
         );
     }
 }

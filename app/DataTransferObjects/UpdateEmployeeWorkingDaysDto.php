@@ -9,6 +9,7 @@ class UpdateEmployeeWorkingDaysDto
         private string $year,
         private array $startDays,
         private array $endDays,
+        private array $dayOffs,
     )
     {
     }
@@ -43,6 +44,14 @@ class UpdateEmployeeWorkingDaysDto
     public function getEndDays(): array
     {
         return $this->endDays;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDayOffs(): array
+    {
+        return $this->dayOffs;
     }
 
 }

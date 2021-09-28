@@ -65,7 +65,7 @@
                                         $workingDay = $workingDays->first(fn($workingDay) => $workingDay->calendar_date->toDateString() === $weekDay->toDateString());
                                     @endphp
                                     <td class="px-3 py-5">
-                                        <input type="time" name="start_days[]"
+                                        <input type="time" name="start_days[{{ $i }}]"
                                                value="{{ $workingDay ? $workingDay->start_at : '' }}"
                                                class="block w-25 mt-1 text-sm focus:border-purple-400 focus:outline-none focus:shadow-outline-red form-input"
                                         />
@@ -81,9 +81,25 @@
                                     @endphp
                                     <td class="px-3 py-5">
                                         <input type="time" value="{{ $workingDay ? $workingDay->end_at : '' }}"
-                                               name="end_days[]"
+                                               name="end_days[{{ $i }}]"
                                                class="block w-25 mt-1 text-sm dark:text-gray-300 dark:bg-gray-700
                                                       focus:border-purple-400 focus:outline-none focus:shadow-outline-red form-input"
+                                        />
+                                    </td>
+                                @endfor
+                            </tr>
+                            <tr class="text-xs font-semibold text-center text-gray-500 uppercase">
+                                <td class="px-3 py-5 sticky left-0 w-56 bg-gray-300">Выходной</td>
+                                @for($i = 1; $i <= $requestDate->daysInMonth; $i++)
+                                    @php
+                                        $weekDay = $requestDate->copy()->setDay($i);
+                                        $workingDay = $workingDays->first(fn($workingDay) => $workingDay->calendar_date->toDateString() === $weekDay->toDateString());
+                                    @endphp
+                                    <td class="px-3">
+                                        <input type="checkbox" value="1"
+                                               {{ !$workingDay ? 'checked' : '' }}
+                                               name="day_offs[{{ $i }}]"
+                                               class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple w-5 h-5 border-gray-300"
                                         />
                                     </td>
                                 @endfor

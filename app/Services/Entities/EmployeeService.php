@@ -53,13 +53,25 @@ class EmployeeService extends BaseService
         $employee = $this->getById($id);
         $startDays = $dto->getStartDays();
         $endDays = $dto->getEndDays();
+        $dayOffs = $dto->getDayOffs();
 
-        foreach ($startDays as $index => $startTime) {
-            $endTime = $endDays[$index] ?? '';
+        foreach ($startDays as $monthDay => $startTime) {
+            $day = Carbon::create($dto->getYear(), $dto->getMonth(), $monthDay);
+            $dayOff = $dayOffs[$monthDay] ?? '';
+
+            if ($dayOff) {
+                $employee->workingDays()
+                    ->whereDate('calendar_date', $day->toDateString())
+                    ->delete();
+                continue;
+            }
+
+            $endTime = $endDays[$monthDay] ?? '';
             if (!$startTime || !$endTime) {
                 continue;
             }
-            $day = Carbon::create($dto->getYear(), $dto->getMonth(), $index + 1);
+
+            $day = Carbon::create($dto->getYear(), $dto->getMonth(), $monthDay);
             $employee->workingDays()
                 ->whereDate('calendar_date', $day->toDateString())
                 ->updateOrCreate([
