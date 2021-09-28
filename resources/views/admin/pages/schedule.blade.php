@@ -39,7 +39,7 @@
                             ></span>
                         @endforeach
                         @foreach($visits as $visit)
-                            <div class="session session-1 track-{{ $visit->employee_id }}"
+                            <div class="session session-1 track-{{ $visit->employee_id }} visit {{ $visit->status }}"
                                  style="grid-column: track-{{ $visit->employee_id }};
                                      grid-row: time-{{ $visit->start_at->ceilUnit('minute', 10)->format('Hi') }} / time-{{ $visit->end_at->ceilUnit('minute', 10)->format('Hi') }};
                                      z-index: {{ $visit->start_at->ceilUnit('minute', 10)->format('Hi') }};

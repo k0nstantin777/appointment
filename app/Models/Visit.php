@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\VisitStatus;
 use Database\Factories\VisitFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,7 @@ use Illuminate\Support\Carbon;
  * @property int|null $service_id
  * @property int|null $client_id
  * @property string $price
+ * @property string $status
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Client|null $client
@@ -68,5 +70,16 @@ class Visit extends Model
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+
+    public function getStatusDescriptionAttribute() : string
+    {
+        return VisitStatus::getDescription($this->status);
     }
 }

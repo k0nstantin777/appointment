@@ -19,11 +19,12 @@
                     <th class="px-4 py-3">Услуга</th>
                     <th class="px-4 py-3">Сотрудник</th>
                     <th class="px-4 py-3 w-40">Цена</th>
+                    <th class="px-4 py-3 w-40">Статус</th>
                 </tr>
             </x-slot>
             <x-slot name="tbody">
                 @foreach($component->collection as $item)
-                    <tr class="text-gray-700 dark:text-gray-400">
+                    <tr class="text-gray-700 dark:text-gray-400 visit {{ $item->status }}">
                         <td class="px-4 py-3">
                             <div class="flex items-center text-sm">
                                 <div>
@@ -45,6 +46,9 @@
                         </td>
                         <td class="px-4 py-3 text-sm">
                             {{ $item->price }} руб.
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            {{ $item->status_description }}
                         </td>
                         <td class="px-4 py-3">
                             <div class="flex items-center space-x-4 text-sm">

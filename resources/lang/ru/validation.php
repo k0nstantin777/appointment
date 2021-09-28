@@ -214,5 +214,7 @@ return [
         'service_id'            => 'Услуга',
         'visit_start_at'        => 'Начало визита',
         'visit_end_at'          => 'Окончание визита',
+        'visit_date'            => 'Дата визита',
+        'today'            => 'Сегодня',
     ],
 ];

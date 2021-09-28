@@ -46,7 +46,6 @@
 
 .session {
     font-size: 14px;
-    background-color: #9061f9;
     color: #fff;
     border-radius: 5px;
     border: 1px solid #cccccc;
@@ -112,3 +111,23 @@
 hr {
     margin: 40px 0;
 }
+
+.visit {
+    &.new {
+        @apply bg-yellow-300
+    }
+
+    &.confirmed {
+        @apply bg-blue-500
+    }
+
+    &.cancelled {
+        @apply bg-red-300
+    }
+
+    &.completed {
+        @apply bg-purple-600
+    }
+}
+
+

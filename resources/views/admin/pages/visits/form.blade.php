@@ -6,21 +6,21 @@
         <x-admin.page.card>
             <form action="{{ $action }}" method="post">
                 @csrf
-                @isset($model)
+                @isset($model->id)
                     @method('put')
                 @endisset
 
                 <x-admin.form-fields.input
                     name="visit_date"
                     label="Дата визита"
-                    value="{{ isset($model) ? $model->visit_date->toDateString() : ''}}"
+                    value="{{ old('visit_date') ?? $model->visit_date->toDateString() }}"
                     type="date"
                 ></x-admin.form-fields.input>
 
                 <x-admin.form-fields.input
                     name="visit_start_at"
                     label="Начало визита"
-                    value="{{ isset($model) ? $model->start_at->format('H:i') : ''}}"
+                    value="{{ old('visit_start_at') ?? $model->start_at->format('H:i') }}"
                     type="time"
                 ></x-admin.form-fields.input>
 
@@ -28,28 +28,28 @@
                 <x-admin.form-fields.input
                     name="visit_end_at"
                     label="Окончание визита"
-                    value="{{ isset($model) ? $model->end_at->format('H:i') : ''}}"
+                    value="{{ old('visit_end_at') ?? $model->end_at->format('H:i') }}"
                     type="time"
                 ></x-admin.form-fields.input>
 
                 <x-admin.form-fields.select
                     name="client_id"
                     label="Клиент"
-                    selected="{{ isset($model) ? $model->client_id : '' }}"
+                    selected="{{ old('client_id') ??  $model->client_id }}"
                     :options="$clients->pluck('name', 'id')->toArray()"
                 ></x-admin.form-fields.select>
 
                 <x-admin.form-fields.select
                     name="employee_id"
                     label="Сотрудник"
-                    selected="{{ isset($model) ? $model->employee_id : '' }}"
+                    selected="{{ old('employee_id') ?? $model->employee_id }}"
                     :options="$employees->pluck('name', 'id')->toArray()"
                 ></x-admin.form-fields.select>
 
                 <x-admin.form-fields.select
                     name="service_id"
                     label="Услуга"
-                    selected="{{ isset($model) ? $model->service_id : '' }}"
+                    selected="{{ old('service_id') ?? $model->service_id }}"
                     :options="$services->pluck('name', 'id')->toArray()"
                 ></x-admin.form-fields.select>
 
@@ -57,8 +57,15 @@
                     name="price"
                     type="number"
                     label="Стоимость"
-                    value="{{ isset($model) ? $model->price : ''}}"
+                    value="{{ old('price') ?? $model->price }}"
                 ></x-admin.form-fields.input>
+
+                <x-admin.form-fields.select
+                    name="status"
+                    label="Статус"
+                    selected="{{ isset($model) ? $model->status : \App\Enums\VisitStatus::NEW }}"
+                    :options="$statuses"
+                ></x-admin.form-fields.select>
 
                 <button class="btn btn-purple mt-3">
                    Сохранить

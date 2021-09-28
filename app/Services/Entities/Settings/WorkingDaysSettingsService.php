@@ -5,6 +5,8 @@ namespace App\Services\Entities\Settings;
 use App\DataTransferObjects\StoreWorkingDaysSettingsDto;
 use App\Services\BaseService;
 use App\Services\Settings\WorkingDaysSettings;
+use Carbon\Carbon;
+use JetBrains\PhpStorm\ArrayShape;
 
 class WorkingDaysSettingsService extends BaseService
 {
@@ -23,5 +25,17 @@ class WorkingDaysSettingsService extends BaseService
         $this->settings->sunday = $dto->getSunday();
 
         $this->settings->save();
+    }
+
+
+    #[ArrayShape(['start_time' => Carbon::class, 'end_time' => Carbon::class])]
+    public function getTodayWorkingTimes() : array
+    {
+        [$startTime, $endTime] = $this->settings->{strtolower(now()->englishDayOfWeek)};
+
+        return [
+            'start_time' => Carbon::parse($startTime),
+            'end_time' => Carbon::parse($endTime),
+        ];
     }
 }

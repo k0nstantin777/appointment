@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\VisitStatus;
 use App\Models\Client;
 use App\Models\Employee;
 use App\Models\Service;
@@ -35,6 +36,7 @@ class VisitFactory extends Factory
             'service_id' => Service::inRandomOrder()->first()->id,
             'client_id' => Client::inRandomOrder()->first()->id,
             'price' => $this->faker->numberBetween(100, 500),
+            'status' => VisitStatus::getRandomValue(),
         ];
     }
 }

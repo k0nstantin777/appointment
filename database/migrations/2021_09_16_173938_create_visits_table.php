@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\VisitStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -37,6 +38,7 @@ class CreateVisitsTable extends Migration
                 ->onDelete('set null')
                 ->onUpdate('cascade');
             $table->decimal('price');
+            $table->string('status')->default(VisitStatus::NEW);
             $table->timestamps();
         });
     }

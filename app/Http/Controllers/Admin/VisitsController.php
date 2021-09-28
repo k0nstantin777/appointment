@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\VisitStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreVisitRequest;
 use App\Models\Client;
@@ -14,7 +15,7 @@ use Illuminate\View\View;
 
 class VisitsController extends Controller
 {
-    public function index()
+    public function index() : View
     {
         return view('admin.pages.visits.index', [
             'collection' => Visit::orderBy('visit_date', 'desc')
@@ -24,15 +25,14 @@ class VisitsController extends Controller
         ]);
     }
 
-    public function create() : View
+    public function create(VisitService $service) : View
     {
-        return view('admin.pages.visits.form', [
-            'title' => 'Создание визита',
-            'action' => route(ADMIN_VISITS_STORE_ROUTE),
-            'employees' => Employee::all(),
-            'clients' => Client::all(),
-            'services' => Service::all(),
-        ]);
+        return view('admin.pages.visits.form', array_merge([
+                'title' => 'Создание визита',
+                'action' => route(ADMIN_VISITS_STORE_ROUTE),
+                'model' => $service->makeDefault(),
+            ], $this->getFormData()
+        ));
     }
 
     public function store(StoreVisitRequest $request, VisitService $service): RedirectResponse
@@ -46,14 +46,27 @@ class VisitsController extends Controller
     {
         $model = $service->getById($id);
 
-        return view('admin.pages.visits.form', [
-            'title' => 'Редактирование визита',
-            'model' => $model,
-            'action' => route(ADMIN_VISITS_UPDATE_ROUTE, [$model->id]),
+        return view('admin.pages.visits.form', array_merge([
+                'title' => 'Редактирование визита',
+                'model' => $model,
+                'action' => route(ADMIN_VISITS_UPDATE_ROUTE, [$model->id])
+            ], $this->getFormData()
+        ));
+    }
+
+    private function getFormData() : array
+    {
+        return [
             'employees' => Employee::all(),
             'clients' => Client::all(),
             'services' => Service::all(),
-        ]);
+            'statuses' => array_combine(VisitStatus::getValues(),
+                array_map(
+                    static fn($item) => VisitStatus::getDescription($item),
+                    VisitStatus::getValues(),
+                ),
+            )
+        ];
     }
 
     public function update(int $id, StoreVisitRequest $request, VisitService $service): RedirectResponse

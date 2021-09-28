@@ -5,20 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\Visit;
-use App\Services\Settings\WorkingDaysSettings;
+use App\Services\Entities\Settings\WorkingDaysSettingsService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ScheduleController extends Controller
 {
-    public function index(Request $request, WorkingDaysSettings $settings) : View
+    public function index(Request $request, WorkingDaysSettingsService $workingDaysSettingsService) : View
     {
-        $now = $request->has('date') ? Carbon::parse($request->get('date')) :  now();
-        [$startTime, $endTime] = $settings->{strtolower($now->englishDayOfWeek)};
+        $request->validate([
+            'date' => ['nullable', 'date']
+        ]);
 
-        $startTimeObj = Carbon::parse($startTime);
-        $endTimeObj =  Carbon::parse($endTime);
+        $now = $request->has('date') ? Carbon::parse($request->get('date')) :  now();
+        $todayWorkingTimes = $workingDaysSettingsService->getTodayWorkingTimes();
+
+        $startTimeObj = $todayWorkingTimes['start_time'];
+        $endTimeObj = $todayWorkingTimes['end_time'];
 
         $timesNet = [];
 
