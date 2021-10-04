@@ -4,6 +4,7 @@ namespace App\Services\Entities;
 
 use App\DataTransferObjects\StoreVisitDto;
 use App\Enums\VisitStatus;
+use App\Events\Visit\Created;
 use App\Models\Visit;
 use App\Services\BaseService;
 use App\Services\Entities\Settings\WorkingDaysSettingsService;
@@ -50,7 +51,11 @@ class VisitService extends BaseService
 
     public function store(StoreVisitDto $dto) : Visit
     {
-        return Visit::create($this->fillData($dto));
+        $visit = Visit::create($this->fillData($dto));
+
+        event(new Created($visit));
+
+        return $visit;
     }
 
     public function update(int $id, StoreVisitDto $dto) : Visit

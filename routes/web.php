@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TelegramWebhookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,6 @@ Route::get('/', function () {
             'now' => now(),
         ]);
 });
+
+Route::post( '/' . config('telegram.bots.mybot.token') . '/telegram-webhook', TelegramWebhookController::class)
+    ->name('telegram-webhook');

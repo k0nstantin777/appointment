@@ -40,7 +40,7 @@
                                 @php
                                     $workingDay = $employee->getWorkingDayByDate($today);
                                     [$hours, $minutes] = explode(':', $time);
-                                    $currentTime = $today->copy()->setTime($hours, $minutes);
+                                    $currentTime = now()->copy()->setTime($hours, $minutes);
                                 @endphp
                                 <span
                                     style="
