@@ -43,14 +43,14 @@
                     name="employee_id"
                     label="Сотрудник"
                     selected="{{ old('employee_id') ?? $model->employee_id }}"
-                    :options="$employees->pluck('name', 'id')->toArray()"
+                    :options="$employees->mapWithKeys(fn($employee) => [$employee->id => $employee->name . ' (' . $employee->position->name . ')'])->toArray()"
                 ></x-admin.form-fields.select>
 
                 <x-admin.form-fields.select
                     name="service_id"
                     label="Услуга"
                     selected="{{ old('service_id') ?? $model->service_id }}"
-                    :options="$services->pluck('name', 'id')->toArray()"
+                    :options="$services->mapWithKeys(fn($service) => [$service->id => $service->name . ' (' . $service->price . ' руб.)'])->toArray()"
                 ></x-admin.form-fields.select>
 
                 <x-admin.form-fields.input

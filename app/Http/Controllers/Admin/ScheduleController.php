@@ -18,28 +18,30 @@ class ScheduleController extends Controller
             'date' => ['nullable', 'date']
         ]);
 
-        $now = $request->has('date') ? Carbon::parse($request->get('date')) :  now();
-        $todayWorkingTimes = $workingDaysSettingsService->getTodayWorkingTimes();
-
-        $startTimeObj = $todayWorkingTimes['start_time'];
-        $endTimeObj = $todayWorkingTimes['end_time'];
+        $today = $request->has('date') ? Carbon::parse($request->get('date')) :  now();
 
         $timesNet = [];
+        if (false === $workingDaysSettingsService->isTodayDayOff($today)) {
+            $todayWorkingTimes = $workingDaysSettingsService->getTodayWorkingTimes($today);
 
-        while($startTimeObj->lessThanOrEqualTo($endTimeObj)) {
-            $timesNet[] = $startTimeObj->format('H:i');
-            $startTimeObj->addMinutes(10);
+            $startTimeObj = $todayWorkingTimes['start_time'];
+            $endTimeObj = $todayWorkingTimes['end_time'];
+
+            while($startTimeObj->lessThanOrEqualTo($endTimeObj)) {
+                $timesNet[] = $startTimeObj->format('H:i');
+                $startTimeObj->addMinutes(10);
+            }
         }
 
-        $visits = Visit::whereDate('visit_date', $now->toDateString())
+        $visits = Visit::whereDate('visit_date', $today->toDateString())
             ->with(['employee', 'client', 'service'])
             ->get();
 
         return view('admin.pages.schedule', [
-            'title' => 'Расписание на ' . $now->format('d/m/Y'),
+            'title' => 'Расписание на ' . $today->format('d/m/Y'),
             'employees' => Employee::with(['visits', 'visits.client', 'visits.service'])->get(),
             'timesNet' => $timesNet,
-            'today' => $now,
+            'today' => $today,
             'visits' => $visits,
         ]);
     }

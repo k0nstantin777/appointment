@@ -75,8 +75,11 @@ class VisitsController extends Controller
         ];
     }
 
-    public function update(int $id, StoreVisitRequest $request, VisitService $service): RedirectResponse
-    {
+    public function update(
+        int $id,
+        StoreVisitRequest $request,
+        VisitService $service
+    ): RedirectResponse {
         $service->update($id, $request->getDto());
 
         return redirect()->back();

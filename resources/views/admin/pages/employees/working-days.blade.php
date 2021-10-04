@@ -66,7 +66,7 @@
                                     @endphp
                                     <td class="px-3 py-5">
                                         <input type="time" name="start_days[{{ $i }}]"
-                                               value="{{ $workingDay ? $workingDay->start_at : '' }}"
+                                               value="{{ $workingDay ? $workingDay->start_at->format('H:i') : '' }}"
                                                class="block w-25 mt-1 text-sm focus:border-purple-400 focus:outline-none focus:shadow-outline-red form-input"
                                         />
                                     </td>
@@ -80,7 +80,7 @@
                                         $workingDay = $workingDays->first(fn($workingDay) => $workingDay->calendar_date->toDateString() === $weekDay->toDateString());
                                     @endphp
                                     <td class="px-3 py-5">
-                                        <input type="time" value="{{ $workingDay ? $workingDay->end_at : '' }}"
+                                        <input type="time" value="{{ $workingDay ? $workingDay->end_at->format('H:i') : '' }}"
                                                name="end_days[{{ $i }}]"
                                                class="block w-25 mt-1 text-sm dark:text-gray-300 dark:bg-gray-700
                                                       focus:border-purple-400 focus:outline-none focus:shadow-outline-red form-input"
