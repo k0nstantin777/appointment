@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Models\Visit;
+use App\Services\Entities\VisitService;
 use Illuminate\Contracts\Validation\Rule;
 
 class IsEmployeeHasFreeTime implements Rule
@@ -16,6 +16,7 @@ class IsEmployeeHasFreeTime implements Rule
         private ?string $startTime = null,
         private ?string $endTime = null,
         private ?string $visitDate = null,
+        private ?int $id = null,
     )
     {
         //
@@ -34,26 +35,14 @@ class IsEmployeeHasFreeTime implements Rule
             return true;
         }
 
-        $visit = Visit::whereDate('visit_date', $this->visitDate)
-            ->where(function($query){
-                $query->where(function ($query) {
-                    $query->whereTime('start_at', '<=', $this->startTime)
-                        ->whereTime('end_at', '>=', $this->endTime);
-                })->orWhere(function($query){
-                    $query->whereTime('start_at', '>=', $this->startTime)
-                        ->whereTime('end_at', '<=', $this->endTime);
-                })->orWhere(function($query){
-                    $query->whereTime('start_at', '>=', $this->startTime)
-                        ->whereTime('start_at', '<=', $this->endTime);
-                })->orWhere(function($query){
-                    $query->whereTime('end_at', '>=', $this->startTime)
-                        ->whereTime('end_at', '<=', $this->endTime);
-                });
-            })
-            ->where('employee_id', $value)
-            ->first();
+        $visit = VisitService::getInstance()->getByEmployeeIdDateAndTimeDiapason(
+            $value,
+            $this->visitDate,
+            $this->startTime,
+            $this->endTime
+        )->first();
 
-        return $visit === null;
+        return $visit === null || $visit->id === $this->id;
     }
 
     /**

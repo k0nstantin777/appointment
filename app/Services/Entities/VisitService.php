@@ -7,6 +7,7 @@ use App\Enums\VisitStatus;
 use App\Models\Visit;
 use App\Services\BaseService;
 use App\Services\Entities\Settings\WorkingDaysSettingsService;
+use Illuminate\Support\Collection;
 
 class VisitService extends BaseService
 {
@@ -17,6 +18,34 @@ class VisitService extends BaseService
     public function getById(int $id) : Visit
     {
         return Visit::findOrFail($id);
+    }
+
+    public function getByEmployeeIdDateAndTimeDiapason(
+        int $employeeId,
+        string $visitDate,
+        string $startTime,
+        string $endTime
+    ) : Collection {
+
+        return Visit::whereDate('visit_date', $visitDate)
+            ->where(function($query) use ($startTime, $endTime) {
+                $query->where(function ($query) use ($startTime, $endTime) {
+                    $query->whereTime('start_at', '<=', $startTime)
+                        ->whereTime('end_at', '>=', $endTime);
+                })->orWhere(function($query) use ($startTime, $endTime){
+                    $query->whereTime('start_at', '>=', $startTime)
+                        ->whereTime('end_at', '<=', $endTime);
+                })->orWhere(function($query) use ($startTime, $endTime){
+                    $query->whereTime('start_at', '>=', $startTime)
+                        ->whereTime('start_at', '<=', $endTime);
+                })->orWhere(function($query) use ($startTime, $endTime){
+                    $query->whereTime('end_at', '>=', $startTime)
+                        ->whereTime('end_at', '<=', $endTime);
+                });
+            })
+            ->orderBy('end_at', 'desc')
+            ->where('employee_id', $employeeId)
+            ->get()->toBase();
     }
 
     public function store(StoreVisitDto $dto) : Visit
@@ -61,6 +90,7 @@ class VisitService extends BaseService
             'client_id' => $dto->getClientId(),
             'service_id' => $dto->getServiceId(),
             'price' => $dto->getPrice(),
+            'status' => $dto->getStatus(),
         ];
     }
 }

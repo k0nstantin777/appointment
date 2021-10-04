@@ -29,13 +29,27 @@ class WorkingDaysSettingsService extends BaseService
 
 
     #[ArrayShape(['start_time' => Carbon::class, 'end_time' => Carbon::class])]
-    public function getTodayWorkingTimes() : array
+    public function getTodayWorkingTimes(Carbon $today = null) : array
     {
-        [$startTime, $endTime] = $this->settings->{strtolower(now()->englishDayOfWeek)};
+        if (null === $today) {
+            $today = now();
+        }
+
+        [$startTime, $endTime] = $this->settings->{strtolower($today->englishDayOfWeek)};
 
         return [
             'start_time' => Carbon::parse($startTime),
             'end_time' => Carbon::parse($endTime),
         ];
+    }
+
+    public function isTodayDayOff(Carbon $today = null) : bool
+    {
+        $todayWorkingTimes = $this->getTodayWorkingTimes($today);
+
+        $startTimeObj = $todayWorkingTimes['start_time'];
+        $endTimeObj = $todayWorkingTimes['end_time'];
+
+        return $startTimeObj->format('H:i') ===  $endTimeObj->format('H:i');
     }
 }

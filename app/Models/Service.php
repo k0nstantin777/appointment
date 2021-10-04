@@ -60,7 +60,7 @@ class Service extends Model
 
     public function employees(): BelongsToMany
     {
-        return $this->belongsToMany(Visit::class)
+        return $this->belongsToMany(Employee::class)
             ->withTimestamps();
     }
 
@@ -79,5 +79,12 @@ class Service extends Model
     public function getDurationAttribute(string $value) : string
     {
         return Carbon::parse($value)->format('H:i');
+    }
+
+    public function getDurationInMinutesAttribute() : string
+    {
+        $duration = Carbon::parse($this->duration);
+
+        return $duration->hour * 60 + $duration->minute;
     }
 }

@@ -14,8 +14,8 @@ use Illuminate\Support\Carbon;
  *
  * @property int $id
  * @property string $calendar_date
- * @property string $start_at
- * @property string $end_at
+ * @property Carbon $start_at
+ * @property Carbon $end_at
  * @property int $employee_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -39,7 +39,7 @@ class WorkingDay extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    protected $dates = ['calendar_date'];
+    protected $dates = ['calendar_date', 'start_at', 'end_at'];
 
    /*
    |--------------------------------------------------------------------------
@@ -51,20 +51,4 @@ class WorkingDay extends Model
    {
        return $this->belongsTo(Employee::class);
    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | ACCESSORS
-    |--------------------------------------------------------------------------
-    */
-
-    public function getStartAtAttribute(string $value) : string
-    {
-        return Carbon::parse($value)->format('H:i');
-    }
-
-    public function getEndAtAttribute(string $value) : string
-    {
-        return Carbon::parse($value)->format('H:i');
-    }
 }
