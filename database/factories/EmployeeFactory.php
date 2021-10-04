@@ -23,7 +23,7 @@ class EmployeeFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->firstName . ' ' . $this->faker->lastName,
             'email' => $this->faker->email,
             'position_id' => Position::inRandomOrder()->first()->id,
         ];
