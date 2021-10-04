@@ -2,8 +2,12 @@
 
 namespace App\DataTransferObjects;
 
+use App\Enums\VisitStatus;
+
 class StoreVisitDto
 {
+    private string $status = VisitStatus::NEW;
+
     public function __construct(
         private string $visitDate,
         private string $startAt,
@@ -70,6 +74,22 @@ class StoreVisitDto
     public function getPrice(): float
     {
         return $this->price;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
     }
 
 }

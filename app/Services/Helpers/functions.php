@@ -10,3 +10,10 @@ if (!function_exists('viewEmptyData')) {
         return $value;
     }
 }
+
+if (!function_exists('escapeBotChars')) {
+    function escapeBotChars($string) : string
+    {
+        return addcslashes($string, '_*[]()~>#+-=|{}.!');
+    }
+}

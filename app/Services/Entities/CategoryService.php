@@ -5,12 +5,25 @@ namespace App\Services\Entities;
 use App\DataTransferObjects\StoreCategoryDto;
 use App\Models\Category;
 use App\Services\BaseService;
+use Illuminate\Support\Collection;
 
 class CategoryService extends BaseService
 {
     public function getById(int $id) : Category
     {
         return Category::findOrFail($id);
+    }
+
+    public function all() : Collection
+    {
+        return Category::all()->toBase();
+    }
+
+    public function getCollectionBySectionId(int $sectionId) : Collection
+    {
+        return Category::whereHas('sections', function ($query) use ($sectionId){
+            $query->where('sections.id', $sectionId);
+        })->get();
     }
 
     public function store(StoreCategoryDto $dto) : Category

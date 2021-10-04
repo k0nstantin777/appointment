@@ -13,6 +13,11 @@ class ClientService extends BaseService
         return Client::findOrFail($id);
     }
 
+    public function getByEmail(string $email) : ?Client
+    {
+        return Client::whereEmail($email)->first();
+    }
+
     public function store(StoreClientDto $dto) : Client
     {
         return Client::create([
