@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\Visit;
 use App\Services\Entities\Settings\WorkingDaysSettingsService;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 

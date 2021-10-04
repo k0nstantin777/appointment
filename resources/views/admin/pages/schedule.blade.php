@@ -37,12 +37,22 @@
                         @foreach($timesNet as $time)
                             <h2 class="time-slot" style="grid-row: time-{{str_replace(':', '', $time) }};">{{$time}}</h2>
                             @foreach($employees as $index => $employee)
+                                @php
+                                    $workingDay = $employee->getWorkingDayByDate($today);
+                                    [$hours, $minutes] = explode(':', $time);
+                                    $currentTime = $today->copy()->setTime($hours, $minutes);
+                                @endphp
                                 <span
                                     style="
                                         border-top: 1px solid #ccc;
                                         border-left: 1px solid #ccc;
                                         grid-row: time-{{str_replace(':', '', $time) }};
                                         grid-column: track-{{ $employee->id }};
+                                        @if(!$workingDay || $workingDay->start_at->greaterThan($currentTime) || $workingDay->end_at->lessThan($currentTime))
+                                            background-color: #888888;
+                                        @else
+                                            background-color: #bbbbbb;
+                                        @endif
                                         "
                                 ></span>
                             @endforeach

@@ -12,7 +12,11 @@ class IsWillWorkEmployee implements Rule
      *
      * @return void
      */
-    public function __construct(private ?string $date = null)
+    public function __construct(
+        private ?string $visitDate = null,
+        private ?string $startTime = null,
+        private ?string $endTime = null
+    )
     {
         //
     }
@@ -26,12 +30,14 @@ class IsWillWorkEmployee implements Rule
      */
     public function passes($attribute, $value)
     {
-        if ($this->date === null) {
+        if (null === $this->visitDate || null === $this->startTime || null === $this->endTime) {
             return true;
         }
 
         $workingDay = WorkingDay::where('employee_id', $value)
-            ->where('calendar_date', $this->date)
+            ->whereDate('calendar_date', $this->visitDate)
+            ->whereTime('start_at', '<=' ,$this->startTime)
+            ->whereTime('end_at', '>=' ,$this->endTime)
             ->first();
 
         return $workingDay !== null;
@@ -44,6 +50,6 @@ class IsWillWorkEmployee implements Rule
      */
     public function message()
     {
-        return 'В выбранную дату данный сотрудник не работает';
+        return 'В выбранную дату и время данный сотрудник не работает';
     }
 }

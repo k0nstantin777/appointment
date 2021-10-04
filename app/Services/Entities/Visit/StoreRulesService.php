@@ -40,7 +40,11 @@ class StoreRulesService extends BaseService
                 'bail',
                 'required',
                 'exists:employees,id',
-                new IsWillWorkEmployee($request['visit_date'] ?? null),
+                new IsWillWorkEmployee(
+                    $request['visit_date'] ?? null,
+                    $request['visit_start_at'] ?? null,
+                    $request['visit_end_at'] ?? null,
+                ),
                 new IsEmployeeCanService($request['service_id'] ?? null),
                 new IsEmployeeHasFreeTime(
                     $request['visit_start_at'] ?? null,

@@ -5,9 +5,8 @@ namespace App\Services\Entities;
 use App\DataTransferObjects\StoreEmployeeDto;
 use App\DataTransferObjects\UpdateEmployeeWorkingDaysDto;
 use App\Models\Employee;
-use App\Models\WorkingDay;
 use App\Services\BaseService;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
 class EmployeeService extends BaseService
@@ -96,13 +95,12 @@ class EmployeeService extends BaseService
         $freeTimes = collect();
         $employee = $this->getById($id);
 
-        $workingDay = $employee->workingDays()->whereDate('calendar_date', $visitDate)->first();
+        $workingDay = $employee->getWorkingDayByDate(Carbon::parse($visitDate));
 
         if (null === $workingDay) {
             return $freeTimes;
         }
 
-        /* @var WorkingDay $workingDay  */
         $startTime = $workingDay->start_at;
         $endTime = $startTime->copy()->addMinutes($durationInMinutes);
         $endWorkingDayTime = $workingDay->end_at;

@@ -73,4 +73,15 @@ class Employee extends Model
     {
         return $this->belongsTo(Position::class);
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
+
+    public function getWorkingDayByDate(Carbon $date): ?WorkingDay
+    {
+        return $this->workingDays()->whereDate('calendar_date', $date->toDateString())->first();
+    }
 }
