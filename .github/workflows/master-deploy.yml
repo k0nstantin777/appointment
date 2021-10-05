@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: shivammathur/setup-php@master
         with:
@@ -35,4 +35,4 @@ jobs:
         uses: deployphp/action@master
         with:
            private-key: ${{ secrets.PRIVATE_KEY }}
-           dep: deploy -v
+           dep: deploy production
