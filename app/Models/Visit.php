@@ -42,6 +42,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Visit whereEndAt($value)
  * @method static Builder|Visit whereStartAt($value)
  * @method static Builder|Visit whereVisitDate($value)
+ * @property-read string $status_description
+ * @method static Builder|Visit whereStatus($value)
  */
 class Visit extends Model
 {

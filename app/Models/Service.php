@@ -40,6 +40,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Service wherePrice($value)
  * @method static Builder|Service whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read string $duration_in_minutes
  */
 class Service extends Model
 {
