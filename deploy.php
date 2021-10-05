@@ -34,7 +34,7 @@ task('rollback', [
 ]);
 
 task('refresh:environment', [
-//    'artisan:horizon:terminate',
+    'artisan:queue:restart',
     'php-fpm:reload'
 ]);
 
