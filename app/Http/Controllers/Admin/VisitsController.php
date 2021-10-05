@@ -45,7 +45,7 @@ class VisitsController extends Controller
     {
         $service->store($request->getDto());
 
-        return redirect()->back();
+        return redirect()->route(ADMIN_VISITS_INDEX_ROUTE);
     }
 
     public function edit(int $id, VisitService $service) : View
@@ -82,13 +82,13 @@ class VisitsController extends Controller
     ): RedirectResponse {
         $service->update($id, $request->getDto());
 
-        return redirect()->back();
+        return redirect()->route(ADMIN_VISITS_INDEX_ROUTE);
     }
 
     public function destroy(int $id, VisitService $service): RedirectResponse
     {
         $service->delete($id);
 
-        return redirect()->back();
+        return redirect()->route(ADMIN_VISITS_INDEX_ROUTE);
     }
 }
