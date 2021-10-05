@@ -19,12 +19,13 @@
         "laravel/tinker": "^2.5",
         "spatie/laravel-settings": "^2.1",
         "tabuna/breadcrumbs": "^2.3",
-        "vladimir-yuldashev/laravel-queue-rabbitmq": "^11.3"
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^11.3",
+        "deployer/deployer": "^7"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "barryvdh/laravel-ide-helper": "^2.10",
         "brianium/paratest": "^6.3",
-        "deployer/deployer": "^7",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
