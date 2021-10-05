@@ -2,7 +2,7 @@
 
 namespace App\Services\TelegramBot\Messages;
 
-use App\Services\Entities\EmployeeService;
+use App\Services\Entities\Employee\EmployeeFreeTimeService;
 use App\Services\Entities\ServiceService;
 use App\Services\TelegramBot\Enums\AppointmentParam;
 use App\Services\TelegramBot\Helpers\ButtonParamHelper;
@@ -32,9 +32,9 @@ class SelectEmployeeMessage implements SendableMessage
         $freeEmployees = collect();
 
 
-        $employeeService = EmployeeService::getInstance();
+        $employeeFreeTimeService = EmployeeFreeTimeService::getInstance();
         foreach ($employees as $employee) {
-            $freeTimes = $employeeService->getFreeTimesByIdDateAndDuration(
+            $freeTimes = $employeeFreeTimeService->getByDateAndDuration(
                 $employee->id,
                 Carbon::parse($visitDate)->toDateString(),
                 $service->duration_in_minutes,

@@ -7,14 +7,9 @@ use App\DataTransferObjects\UpdateEmployeeWorkingDaysDto;
 use App\Models\Employee;
 use App\Services\BaseService;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
 
 class EmployeeService extends BaseService
 {
-    public function __construct(private VisitService $visitService)
-    {
-    }
-
     public function getById(int $id) : Employee
     {
         return Employee::findOrFail($id);
@@ -88,48 +83,5 @@ class EmployeeService extends BaseService
         }
 
         return $employee->fresh();
-    }
-
-    public function getFreeTimesByIdDateAndDuration(int $id, string $visitDate, string $durationInMinutes) : Collection
-    {
-        $freeTimes = collect();
-        $employee = $this->getById($id);
-
-        $workingDay = $employee->getWorkingDayByDate(Carbon::parse($visitDate));
-
-        if (null === $workingDay) {
-            return $freeTimes;
-        }
-
-        $startTime = $workingDay->start_at;
-        $endTime = $startTime->copy()->addMinutes($durationInMinutes);
-        $endWorkingDayTime = $workingDay->end_at;
-
-        while($startTime->lessThan($endWorkingDayTime) && $endTime->lessThan($endWorkingDayTime)) {
-            $visits = $this->visitService->getByEmployeeIdDateAndTimeDiapason(
-                $id,
-                $visitDate,
-                $startTime->format('H:i'),
-                $endTime->format('H:i'),
-            );
-
-            if ($visits->isEmpty() || $visits->first()->start_at->equalTo($endTime)) {
-                $freeTimes->push([$startTime->copy(), $endTime->copy()]);
-                $startTime->addMinutes($durationInMinutes);
-                $endTime = $startTime->copy()->addMinutes($durationInMinutes);
-                continue;
-            }
-
-            $visitEndTime = $visits->first()->end_at;
-            $visitEndTime->ceilUnit('minute', 10);
-            if ($visitEndTime->greaterThan($endWorkingDayTime)) {
-                $visitEndTime = $endWorkingDayTime->copy();
-            }
-
-            $startTime->setTime($visitEndTime->hour, $visitEndTime->minute);
-            $endTime = $startTime->copy()->addMinutes($durationInMinutes);
-        }
-
-        return $freeTimes;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Settings\GeneralSettings;
 use App\Services\TelegramBot\Storages\AppointmentCacheStorage;
 use App\Services\TelegramBot\Storages\AppointmentStorage;
 use Carbon\Carbon;
@@ -40,5 +41,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Carbon::setLocale(config('app.locale'));
+
+        try {
+            $timezone = app(GeneralSettings::class)->timezone;
+            config(['app.timezone' => $timezone]);
+            date_default_timezone_set($timezone);
+        } catch (\Exception $exception) {
+        }
     }
 }
