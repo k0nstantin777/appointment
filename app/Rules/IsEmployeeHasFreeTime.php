@@ -43,13 +43,21 @@ class IsEmployeeHasFreeTime implements Rule
             $this->endTime
         );
 
-        return $visits->isEmpty() ||
-            ($visits->count() === 1 && $visits->first()->id === $this->id) ||
-            (
-                $visits->first()->start_at->equalTo(Carbon::parse($this->endTime)) &&
-                $visits->last()->end_at->equalTo(Carbon::parse($this->startTime))
-            )
-        ;
+        $startTimeObj = Carbon::parse($this->startTime);
+        $endTimeObj = Carbon::parse($this->endTime);
+
+        if ($visits->isEmpty()) {
+            return true;
+        }
+
+        if ($visits->count() > 1) {
+            return $visits->first()->start_at->equalTo($endTimeObj) &&
+                $visits->last()->end_at->equalTo($startTimeObj);
+        }
+
+        return $visits->first()->id === $this->id ||
+            $visits->first()->start_at->equalTo($endTimeObj) ||
+            $visits->first()->end_at->equalTo($startTimeObj);
     }
 
     /**
