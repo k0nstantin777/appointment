@@ -5,6 +5,7 @@ namespace App\Services\Entities\Employee;
 use App\Models\WorkingDay;
 use App\Services\BaseService;
 use App\Services\Entities\EmployeeService;
+use App\Services\Entities\Settings\WorkingDaysSettingsService;
 use App\Services\Entities\VisitService;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -17,6 +18,7 @@ class EmployeeFreeTimeService extends BaseService
     public function __construct(
         private EmployeeService $employeeService,
         private VisitService $visitService,
+        private WorkingDaysSettingsService $workingDaysSettingsService,
     )
     {
     }
@@ -33,10 +35,19 @@ class EmployeeFreeTimeService extends BaseService
             return $freeTimes;
         }
 
+        $companyWorkingTimes = $this->workingDaysSettingsService->getTodayWorkingTimes($visitDateObj);
         $startTime = $this->getStartTime($workingDay, $visitDateObj);
 
         $endTime = $startTime->copy()->addMinutes($durationInMinutes);
         $endWorkingDayTime = $workingDay->end_at;
+
+        if ($startTime->lessThan($companyWorkingTimes['start_time'])) {
+            $startTime = $companyWorkingTimes['start_time'];
+        }
+
+        if ($endWorkingDayTime->greaterThan($companyWorkingTimes['end_time'])) {
+            $endWorkingDayTime = $companyWorkingTimes['end_time'];
+        }
 
         while($startTime->lessThan($endWorkingDayTime) && $endTime->lessThan($endWorkingDayTime)) {
             $visits = $this->visitService->getByEmployeeIdDateAndTimeDiapason(
