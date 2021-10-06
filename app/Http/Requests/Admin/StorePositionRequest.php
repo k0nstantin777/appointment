@@ -41,7 +41,7 @@ class StorePositionRequest extends FormRequest
     {
         return new StorePositionDto(
             $this->get('name'),
-            $this->get('description'),
+            $this->get('description') ?? '',
         );
     }
 }

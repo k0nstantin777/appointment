@@ -30,8 +30,8 @@ class StoreSectionRequest extends FormRequest
                 'required',
                 'min:2',
                 'max:255',
-                Rule::unique('positions', 'name')
-                    ->ignore($this->route('position')),
+                Rule::unique('sections', 'name')
+                    ->ignore($this->route('section')),
             ],
             'description' => ['nullable', 'min:2', 'max:1000']
         ];
@@ -41,7 +41,7 @@ class StoreSectionRequest extends FormRequest
     {
         return new StoreSectionDto(
             $this->get('name'),
-            $this->get('description'),
+            $this->get('description') ?? '',
         );
     }
 }

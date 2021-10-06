@@ -26,6 +26,8 @@ class EmployeeService extends BaseService
         if (!empty($dto->getServiceIds())){
             $employee->services()->sync($dto->getServiceIds());
         }
+
+        return $employee;
     }
 
     public function update(int $id, StoreEmployeeDto $dto) : Employee

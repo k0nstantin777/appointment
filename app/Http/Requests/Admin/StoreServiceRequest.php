@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\DataTransferObjects\StoreServiceDto;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreServiceRequest extends FormRequest
 {
@@ -25,7 +26,12 @@ class StoreServiceRequest extends FormRequest
     public function rules() : array
     {
         return [
-            'name' => ['required', 'min:2', 'max:255'],
+            'name' => [
+                'required',
+                'min:2',
+                'max:255',
+                Rule::unique('services', 'name')->ignore( $this->route('service')),
+            ],
             'duration' => ['required', 'date_format:H:i'],
             'price' => ['required', 'numeric'],
             'description' => ['nullable', 'min:2', 'max:1000'],
@@ -40,7 +46,7 @@ class StoreServiceRequest extends FormRequest
             $this->get('name'),
             $this->get('duration'),
             $this->get('price'),
-            $this->get('description'),
+            $this->get('description') ?? '',
         );
 
         if ($this->get('category_ids')) {

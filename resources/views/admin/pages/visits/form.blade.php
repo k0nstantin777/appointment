@@ -50,7 +50,9 @@
                     name="service_id"
                     label="Услуга"
                     selected="{{ old('service_id') ?? $model->service_id }}"
-                    :options="$services->mapWithKeys(fn($service) => [$service->id => $service->name . ' (' . $service->price . ' руб.)'])->toArray()"
+                    :options="$services->mapWithKeys(
+                        fn($service) => [$service->id => $service->name . ' (' . $service->price . ' руб, ' . $service->duration . ')']
+                    )->toArray()"
                 ></x-admin.form-fields.select>
 
                 <x-admin.form-fields.input

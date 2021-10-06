@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\DataTransferObjects\StoreCategoryDto;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCategoryRequest extends FormRequest
 {
@@ -25,7 +26,13 @@ class StoreCategoryRequest extends FormRequest
     public function rules() : array
     {
         return [
-            'name' => ['required', 'min:2', 'max:255'],
+            'name' => [
+                'required',
+                'min:2',
+                'max:255',
+                Rule::unique('categories', 'name')
+                    ->ignore($this->route('category')),
+            ],
             'description' => ['nullable', 'min:2', 'max:1000'],
             'parent_category_id' => ['nullable', 'exists:categories,id'],
             'section_ids' => ['array'],
@@ -37,7 +44,7 @@ class StoreCategoryRequest extends FormRequest
     {
         $dto = new StoreCategoryDto(
             $this->get('name'),
-            $this->get('description'),
+            $this->get('description') ?? '',
         );
 
         if ($this->get('parent_category_id')) {

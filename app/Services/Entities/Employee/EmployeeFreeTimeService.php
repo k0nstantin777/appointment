@@ -46,10 +46,6 @@ class EmployeeFreeTimeService extends BaseService
                 $endTime->format('H:i'),
             );
 
-//            dump($visits);
-//            dump( $startTime->format('H:i'));
-//            dump( $endTime->format('H:i'));
-
             if ($this->isFreeTime($visits, $startTime, $endTime)) {
                 $freeTimes->push([$startTime->copy(), $endTime->copy()]);
                 $startTime->addMinutes($durationInMinutes);

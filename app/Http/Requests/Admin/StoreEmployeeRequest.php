@@ -31,8 +31,8 @@ class StoreEmployeeRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                Rule::unique('clients', 'email')
-                    ->ignore($this->route('client')),
+                Rule::unique('employees', 'email')
+                    ->ignore($this->route('employee')),
             ],
             'position_id' => ['required', 'exists:positions,id'],
             'service_ids' => ['nullable', 'array'],

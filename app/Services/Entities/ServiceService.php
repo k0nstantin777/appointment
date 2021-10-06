@@ -38,6 +38,8 @@ class ServiceService extends BaseService
         if (!empty($dto->getCategoryIds())){
             $service->categories()->sync($dto->getCategoryIds());
         }
+
+        return $service;
     }
 
     public function update(int $id, StoreServiceDto $dto) : Service

@@ -37,6 +37,8 @@ class CategoryService extends BaseService
         if (!empty($dto->getSectionIds())){
             $category->sections()->sync($dto->getSectionIds());
         }
+
+        return $category;
     }
 
     public function update(int $id, StoreCategoryDto $dto) : Category
