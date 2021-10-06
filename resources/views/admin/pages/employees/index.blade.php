@@ -38,7 +38,9 @@
                             {{ $item->email }}
                         </td>
                         <td class="px-4 py-3 text-sm">
-                            {{ implode(',', $item->services->pluck('name')->toArray()) }}
+                            @foreach($item->services as $service)
+                                {{ $service->name }} <br>
+                            @endforeach
                         </td>
                         <td class="px-4 py-3">
                             <div class="flex items-center space-x-4 text-sm">

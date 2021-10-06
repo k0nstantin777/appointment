@@ -73,7 +73,8 @@ class EmployeeFreeTimeService extends BaseService
         }
 
         if ($visits->count() > 1) {
-            return false;
+            return $visits->first()->start_at->equalTo($endTime) &&
+                $visits->last()->end_at->equalTo($startTime);
         }
 
         return $visits->first()->start_at->equalTo($endTime) || $visits->first()->end_at->equalTo($startTime);

@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use App\Services\Entities\VisitService;
+use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Rule;
 
 class IsEmployeeHasFreeTime implements Rule
@@ -35,14 +36,20 @@ class IsEmployeeHasFreeTime implements Rule
             return true;
         }
 
-        $visit = VisitService::getInstance()->getByEmployeeIdDateAndTimeDiapason(
+        $visits = VisitService::getInstance()->getByEmployeeIdDateAndTimeDiapason(
             $value,
             $this->visitDate,
             $this->startTime,
             $this->endTime
-        )->first();
+        );
 
-        return $visit === null || $visit->id === $this->id;
+        return $visits->isEmpty() ||
+            ($visits->count() === 1 && $visits->first()->id === $this->id) ||
+            (
+                $visits->first()->start_at->equalTo(Carbon::parse($this->endTime)) &&
+                $visits->last()->end_at->equalTo(Carbon::parse($this->startTime))
+            )
+        ;
     }
 
     /**
