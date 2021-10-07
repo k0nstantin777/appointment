@@ -126,7 +126,7 @@ hr {
     }
 
     &.completed {
-        @apply bg-purple-600
+        @apply bg-green-400
     }
 }
 
