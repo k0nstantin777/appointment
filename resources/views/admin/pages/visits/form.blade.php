@@ -36,7 +36,9 @@
                     name="client_id"
                     label="Клиент"
                     selected="{{ old('client_id') ??  $model->client_id }}"
-                    :options="$clients->pluck('name', 'id')->toArray()"
+                    :options="$clients->mapWithKeys(
+                        fn($client) => [$client->id => $client->name . ' (' . $client->email . ')']
+                    )->toArray()"
                 ></x-admin.form-fields.select>
 
                 <x-admin.form-fields.select
