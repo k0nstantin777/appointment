@@ -13,6 +13,7 @@ use App\Services\TelegramBot\Handlers\ErrorHandler;
 use App\Services\TelegramBot\Handlers\Handler;
 use App\Services\TelegramBot\Handlers\InputEmailHandler;
 use App\Services\TelegramBot\Handlers\InputPhoneHandler;
+use App\Services\TelegramBot\Handlers\NothingHandler;
 use App\Services\TelegramBot\Handlers\PhoneGivenHandler;
 use App\Services\TelegramBot\Handlers\SectionSelectedHandler;
 use App\Services\TelegramBot\Handlers\SelectCategoryHandler;
@@ -38,16 +39,32 @@ class TelegramBotService extends BaseService
     public function getHandler(Update $update) : Handler
     {
         $chatId = $update->getChat()->id;
-        if (false === $this->isFilledAppointment($chatId)) {
+        if (false === $this->isFilledAppointment($chatId) ||
+            $this->isCallbackUpdate($update)
+        ) {
             return  $this->getFillAppointmentHandler();
         }
 
-        return  $this->getFillClientInfoHandler();
+        if ($this->isMessageUpdate($update)) {
+            return  $this->getFillClientInfoHandler();
+        }
+
+        return app(NothingHandler::class);
     }
 
     public function getErrorHandler() : Handler
     {
         return app(ErrorHandler::class);
+    }
+
+    private function isCallbackUpdate(Update $update): bool
+    {
+        return (bool) $update->callbackQuery;
+    }
+
+    private function isMessageUpdate(Update $update): bool
+    {
+        return (bool) $update->message;
     }
 
     private function getFillAppointmentHandler() : Handler

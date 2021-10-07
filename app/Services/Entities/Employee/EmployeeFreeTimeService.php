@@ -38,12 +38,12 @@ class EmployeeFreeTimeService extends BaseService
         $companyWorkingTimes = $this->workingDaysSettingsService->getTodayWorkingTimes($visitDateObj);
         $startTime = $this->getStartTime($workingDay, $visitDateObj);
 
-        $endTime = $startTime->copy()->addMinutes($durationInMinutes);
-        $endWorkingDayTime = $workingDay->end_at;
-
         if ($startTime->lessThan($companyWorkingTimes['start_time'])) {
             $startTime = $companyWorkingTimes['start_time'];
         }
+
+        $endTime = $startTime->copy()->addMinutes($durationInMinutes);
+        $endWorkingDayTime = $workingDay->end_at;
 
         if ($endWorkingDayTime->greaterThan($companyWorkingTimes['end_time'])) {
             $endWorkingDayTime = $companyWorkingTimes['end_time'];

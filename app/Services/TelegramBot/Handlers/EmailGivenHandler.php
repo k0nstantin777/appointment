@@ -23,7 +23,7 @@ class EmailGivenHandler extends AbstractHandler
 
         $email = $update->message->text;
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (false === $this->isValidEmail($email)) {
             $message = new InvalidEmailGivenMessage();
             $this->telegram->sendMessage(array_merge([
                     'chat_id' => $update->getChat()->id,
@@ -43,5 +43,10 @@ class EmailGivenHandler extends AbstractHandler
         );
 
         parent::handle($update);
+    }
+
+    private function isValidEmail(string $email)
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 }
