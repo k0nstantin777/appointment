@@ -3,7 +3,7 @@
 namespace App\Rules;
 
 use App\Services\Entities\VisitService;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Contracts\Validation\Rule;
 
 class IsEmployeeHasFreeTime implements Rule

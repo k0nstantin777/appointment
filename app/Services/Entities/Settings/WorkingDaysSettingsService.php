@@ -5,7 +5,7 @@ namespace App\Services\Entities\Settings;
 use App\DataTransferObjects\StoreWorkingDaysSettingsDto;
 use App\Services\BaseService;
 use App\Services\Settings\WorkingDaysSettings;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use JetBrains\PhpStorm\ArrayShape;
 
 class WorkingDaysSettingsService extends BaseService

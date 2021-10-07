@@ -3,7 +3,7 @@
 namespace App\Rules;
 
 use App\Services\Entities\Settings\WorkingDaysSettingsService;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Contracts\Validation\Rule;
 
 class IsWorkTime implements Rule

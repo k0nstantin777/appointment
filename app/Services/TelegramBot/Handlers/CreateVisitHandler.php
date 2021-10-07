@@ -12,7 +12,7 @@ use App\Services\Entities\Visit\ValidateVisitService;
 use App\Services\Entities\VisitService;
 use App\Services\TelegramBot\Messages\VisitCreatedMessage;
 use App\Services\TelegramBot\Models\Appointment;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Validation\ValidationException;
 use Telegram\Bot\Objects\Update;
 

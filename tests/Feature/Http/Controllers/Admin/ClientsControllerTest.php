@@ -2,9 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
-use App\Models\Category;
 use App\Models\Client;
-use App\Models\Section;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;

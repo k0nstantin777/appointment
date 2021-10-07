@@ -7,7 +7,7 @@ use App\Services\Entities\ServiceService;
 use App\Services\TelegramBot\Enums\AppointmentParam;
 use App\Services\TelegramBot\Helpers\ButtonParamHelper;
 use App\Services\TelegramBot\Models\Appointment;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Telegram\Bot\Keyboard\Keyboard;
 
 class SelectVisitTimeMessage implements SendableMessage

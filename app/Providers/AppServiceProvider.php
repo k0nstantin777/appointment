@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Services\Settings\GeneralSettings;
 use App\Services\TelegramBot\Storages\AppointmentCacheStorage;
 use App\Services\TelegramBot\Storages\AppointmentStorage;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use Telegram\Bot\Api;
