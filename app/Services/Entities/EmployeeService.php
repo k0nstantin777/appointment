@@ -69,11 +69,13 @@ class EmployeeService extends BaseService
             }
 
             $endTime = $endDays[$monthDay] ?? '';
+
             if (!$startTime || !$endTime) {
                 continue;
             }
 
             $day = Carbon::create($dto->getYear(), $dto->getMonth(), $monthDay);
+
             $employee->workingDays()
                 ->whereDate('calendar_date', $day->toDateString())
                 ->updateOrCreate([
