@@ -3,12 +3,14 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Tests\Traits\TelegramBotApiMock;
 
 class TelegramWebhookControllerTest extends TestCase
 {
     use TelegramBotApiMock;
+    use RefreshDatabase;
 
     public function testInvoke(): void
     {

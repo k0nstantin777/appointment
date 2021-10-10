@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreWorkingDaysSettingsRequest;
 use App\Services\Entities\Settings\WorkingDaysSettingsService;
 use App\Services\Settings\WorkingDaysSettings;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class WorkingDaysSettingsController extends Controller
 {
+    use RefreshDatabase;
+
     public function edit(WorkingDaysSettings $settings) : View
     {
         return view('admin.pages.settings.working-days.form', [
