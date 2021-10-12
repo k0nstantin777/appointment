@@ -208,6 +208,8 @@ class VisitsControllerTest extends TestCase
     {
         $this->actingAs(User::factory()->create());
 
+        Carbon::setTestNow('2021-10-01 10:00:00');
+
         WorkingDaysSettingsService::getInstance()->update(new StoreWorkingDaysSettingsDto(
             ['08:00', '18:00'],
             ['08:00', '18:00'],
@@ -230,6 +232,8 @@ class VisitsControllerTest extends TestCase
     public function testStoreValidateIsWorkTimeWhenDayOffRule(): void
     {
         $this->actingAs(User::factory()->create());
+
+        Carbon::setTestNow('2021-10-01 10:00:00');
 
         WorkingDaysSettingsService::getInstance()->update(new StoreWorkingDaysSettingsDto(
             ['08:00', '18:00'],

@@ -8,7 +8,7 @@ use Telegram\Bot\Objects\Update;
 
 abstract class AbstractHandler implements Handler
 {
-    private ?Handler $nextHandler = null;
+    protected ?Handler $nextHandler = null;
 
     public function __construct(
         protected Api $telegram,

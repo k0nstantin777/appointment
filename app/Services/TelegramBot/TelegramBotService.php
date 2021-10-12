@@ -33,7 +33,6 @@ class TelegramBotService extends BaseService
     public function __construct(
         private AppointmentStorage $appointmentStorage)
     {
-
     }
 
     public function getHandler(Update $update) : Handler
